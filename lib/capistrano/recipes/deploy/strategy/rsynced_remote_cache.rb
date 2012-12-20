@@ -26,7 +26,9 @@ module Strategy
 
         def update_repository_cache
             logger.trace "updating the cached checkout"
-            run_locally "rsync -avz --delete #{repository} $CAPISTRANO:HOST$:#{repository_cache}";
+            find_servers(:except => { :no_release => true }).each do |server|
+                run_locally "rsync -avz --delete #{repository} #{server}:#{repository_cache}";
+            end
         end
 
         def copy_repository_cache

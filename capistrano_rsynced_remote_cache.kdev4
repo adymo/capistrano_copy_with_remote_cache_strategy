@@ -1,0 +1,3 @@
+[Project]
+Manager=KDevGenericManager
+Name=capistrano_rsynced_remote_cache

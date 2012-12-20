@@ -27,7 +27,7 @@ module Strategy
         def update_repository_cache
             logger.trace "updating the cached checkout"
             find_servers(:except => { :no_release => true }).each do |server|
-                run_locally "rsync -avz --delete -e ssh #{repository}/ #{server}:#{repository_cache}";
+                run_locally "rsync -rlz --delete -e ssh #{repository}/ #{server}:#{repository_cache}";
             end
         end
 
